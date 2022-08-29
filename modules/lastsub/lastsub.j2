@@ -1,0 +1,30 @@
+<html>
+<meta charset="UTF-8">
+<script>
+function init() {
+	const client_id = '{{client_id}}';
+	const access_token = '{{access_token}}';
+	const account_id = '{{account_id}}';
+
+	const Http = new XMLHttpRequest();
+
+	Http.open("GET", 'https://api.twitch.tv/helix/users/follows?to_id=' + account_id+ '&first=1');
+	Http.setRequestHeader('Client-Id', client_id);
+	Http.setRequestHeader('Authorization', 'Bearer ' + access_token);
+	Http.send();
+
+	Http.onreadystatechange = (e) => {
+		const response = JSON.parse(Http.responseText);
+		const lastsub = document.getElementById('lastsub');
+		lastsub.innerHTML = response.data[0].from_name;
+	}
+}
+
+</script>
+
+
+<body onload="init()">
+	<div id='lastsub'/>
+</body>
+
+</html>

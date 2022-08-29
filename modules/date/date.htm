@@ -1,0 +1,15 @@
+<html>
+<script>
+function init() {
+  update();
+  setInterval(update, 1000);
+}
+function update() {
+  const now = new Date();
+  document.getElementById('txt').innerHTML = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' } );
+}
+</script>
+<body onload="init()">
+	<div id="txt"></div>
+</body>
+</html>
